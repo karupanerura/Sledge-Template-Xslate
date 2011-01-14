@@ -23,12 +23,12 @@
 
 # --- MakeMaker const_config section:
 
-# These definitions are from config.sh (via /usr/local/lib/perl5/5.12.1/mach/Config.pm).
+# These definitions are from config.sh (via /usr/local/lib/perl5/5.12.2/mach/Config.pm).
 # They may have been overridden via Makefile.PL or on the command line.
 AR = ar
 CC = cc
 CCCDLFLAGS = -DPIC -fPIC
-CCDLFLAGS =   -Wl,-R/usr/local/lib/perl5/5.12.1/mach/CORE
+CCDLFLAGS =   -Wl,-R/usr/local/lib/perl5/5.12.2/mach/CORE
 DLEXT = so
 DLSRC = dl_dlopen.xs
 EXE_EXT = 
@@ -42,8 +42,8 @@ OBJ_EXT = .o
 OSNAME = freebsd
 OSVERS = 8.1-release
 RANLIB = :
-SITELIBEXP = /usr/local/lib/perl5/site_perl/5.12.1
-SITEARCHEXP = /usr/local/lib/perl5/site_perl/5.12.1/mach
+SITELIBEXP = /usr/local/lib/perl5/site_perl/5.12.2
+SITEARCHEXP = /usr/local/lib/perl5/site_perl/5.12.2/mach
 SO = so
 VENDORARCHEXP = 
 VENDORLIBEXP = 
@@ -76,15 +76,15 @@ PREFIX = $(SITEPREFIX)
 PERLPREFIX = /usr/local
 SITEPREFIX = /usr/local
 VENDORPREFIX = 
-INSTALLPRIVLIB = /usr/local/lib/perl5/5.12.1
+INSTALLPRIVLIB = /usr/local/lib/perl5/5.12.2
 DESTINSTALLPRIVLIB = $(DESTDIR)$(INSTALLPRIVLIB)
-INSTALLSITELIB = /usr/local/lib/perl5/site_perl/5.12.1
+INSTALLSITELIB = /usr/local/lib/perl5/site_perl/5.12.2
 DESTINSTALLSITELIB = $(DESTDIR)$(INSTALLSITELIB)
 INSTALLVENDORLIB = 
 DESTINSTALLVENDORLIB = $(DESTDIR)$(INSTALLVENDORLIB)
-INSTALLARCHLIB = /usr/local/lib/perl5/5.12.1/mach
+INSTALLARCHLIB = /usr/local/lib/perl5/5.12.2/mach
 DESTINSTALLARCHLIB = $(DESTDIR)$(INSTALLARCHLIB)
-INSTALLSITEARCH = /usr/local/lib/perl5/site_perl/5.12.1/mach
+INSTALLSITEARCH = /usr/local/lib/perl5/site_perl/5.12.2/mach
 DESTINSTALLSITEARCH = $(DESTDIR)$(INSTALLSITEARCH)
 INSTALLVENDORARCH = 
 DESTINSTALLVENDORARCH = $(DESTDIR)$(INSTALLVENDORARCH)
@@ -106,22 +106,22 @@ INSTALLSITEMAN1DIR = /usr/local/man/man1
 DESTINSTALLSITEMAN1DIR = $(DESTDIR)$(INSTALLSITEMAN1DIR)
 INSTALLVENDORMAN1DIR = 
 DESTINSTALLVENDORMAN1DIR = $(DESTDIR)$(INSTALLVENDORMAN1DIR)
-INSTALLMAN3DIR = /usr/local/lib/perl5/5.12.1/perl/man/man3
+INSTALLMAN3DIR = /usr/local/lib/perl5/5.12.2/perl/man/man3
 DESTINSTALLMAN3DIR = $(DESTDIR)$(INSTALLMAN3DIR)
-INSTALLSITEMAN3DIR = /usr/local/lib/perl5/5.12.1/man/man3
+INSTALLSITEMAN3DIR = /usr/local/lib/perl5/5.12.2/man/man3
 DESTINSTALLSITEMAN3DIR = $(DESTDIR)$(INSTALLSITEMAN3DIR)
 INSTALLVENDORMAN3DIR = 
 DESTINSTALLVENDORMAN3DIR = $(DESTDIR)$(INSTALLVENDORMAN3DIR)
-PERL_LIB = /usr/local/lib/perl5/5.12.1
-PERL_ARCHLIB = /usr/local/lib/perl5/5.12.1/mach
+PERL_LIB = /usr/local/lib/perl5/5.12.2
+PERL_ARCHLIB = /usr/local/lib/perl5/5.12.2/mach
 LIBPERL_A = libperl.a
 FIRST_MAKEFILE = Makefile
 MAKEFILE_OLD = Makefile.old
 MAKE_APERL_FILE = Makefile.aperl
 PERLMAINCC = $(CC)
-PERL_INC = /usr/local/lib/perl5/5.12.1/mach/CORE
-PERL = /usr/local/bin/perl
-FULLPERL = /usr/local/bin/perl
+PERL_INC = /usr/local/lib/perl5/5.12.2/mach/CORE
+PERL = /usr/bin/perl
+FULLPERL = /usr/bin/perl
 ABSPERL = $(PERL)
 PERLRUN = $(PERL)
 FULLPERLRUN = $(FULLPERL)
@@ -134,7 +134,7 @@ PERM_DIR = 755
 PERM_RW = 644
 PERM_RWX = 755
 
-MAKEMAKER   = /usr/local/lib/perl5/5.12.1/ExtUtils/MakeMaker.pm
+MAKEMAKER   = /usr/local/lib/perl5/5.12.2/ExtUtils/MakeMaker.pm
 MM_VERSION  = 6.56
 MM_REVISION = 65600
 
@@ -747,7 +747,7 @@ $(FIRST_MAKEFILE) : Makefile.PL $(CONFIGDEP)
 
 # --- MakeMaker makeaperl section ---
 MAP_TARGET    = perl
-FULLPERL      = /usr/local/bin/perl
+FULLPERL      = /usr/bin/perl
 
 $(MAP_TARGET) :: static $(MAKE_APERL_FILE)
 	$(MAKE) $(USEMAKEFILE) $(MAKE_APERL_FILE) $@

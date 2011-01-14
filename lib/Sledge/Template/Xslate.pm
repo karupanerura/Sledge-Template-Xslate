@@ -13,7 +13,7 @@ use Text::Xslate;
 use File::Spec::Memoized;
 use File::Basename;
 use Sledge::Exceptions;
-
+use Memoize::Class::Constructor qw(Text::Xslate);
 
 sub import {
     my($class, $option) = @_;
