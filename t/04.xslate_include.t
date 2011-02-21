@@ -1,5 +1,6 @@
 ﻿use strict;
 use Test::More tests => 2;
+use Test::Requires qw(Sledge Sledge::TestPages Text::Xslate);
 
 use lib 't/lib';
 

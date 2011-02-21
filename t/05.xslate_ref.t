@@ -1,5 +1,6 @@
 ﻿use strict;
 use Test::More tests => 1;
+use Test::Requires qw(Sledge Sledge::TestPages Text::Xslate);
 
 use lib "t/lib";
 
@@ -20,10 +21,13 @@ sub dispatch_name {
     $self->tmpl->set_option(filename => \$data);
 }
 
-use vars qw($TMPL_PATH);
-$TMPL_PATH = "t/template";
+our $TMPL_PATH = "t/template";
 
 package main;
+
+$ENV{HTTP_HOST}      = "localhost";
+$ENV{REQUEST_URI}    = "http://localhost/include1.cgi";
+$ENV{REQUEST_METHOD} = 'GET';
 
 my $p = Mock::Pages->new();
 $p->dispatch("name");

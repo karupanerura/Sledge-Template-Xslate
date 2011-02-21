@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use version;
 
-our $VERSION = qv('0.0.3');
+our $VERSION = qv('0.0.4');
 our $XSLATE_CACHE_DIR_NAME = 'xslate';
 
 use parent qw(Sledge::Template);
@@ -13,14 +13,17 @@ use Text::Xslate;
 use File::Spec::Memoized;
 use File::Basename;
 use Sledge::Exceptions;
-use Memoize::Class::Constructor qw(Text::Xslate);
+use Memoize;
+
+memoize('create_xslate');
+sub create_xslate{ Text::Xslate->new(@_) }
 
 sub import {
     my($class, $option) = @_;
     my $pkg = caller(0);
 
     undef $option unless(defined($option) && ref($option) eq 'HASH');
-    
+
     no strict 'refs';
     *{"$pkg\::create_template"} = sub {
 	my($self, $file) = @_;
@@ -41,7 +44,7 @@ sub new {
 	type        => 'html',
 	cache       => 1
     };
-    
+
     if(defined($option)){
 	foreach my $key (keys(%$option)){
 	    $_option->{$key} = $option->{$key};
@@ -86,10 +89,10 @@ sub output {
 	    "No template file detected: $input",
 	);
     }
-    
+
     # Create object
-    my $template = Text::Xslate->new($config);
-    
+    my $template = create_xslate($config);
+
     # Render
     return ((ref $input eq 'SCALAR') ?
 	    $template->render_string($$input, $self->{_params}):

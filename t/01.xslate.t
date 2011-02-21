@@ -1,11 +1,7 @@
 ﻿use strict;
-use Test::More;
+use Test::More tests => 5;
+use Test::Requires qw(Sledge Text::Xslate);
 
-BEGIN {
-    eval { require Text::Xslate; };
-    plan $@ ? (skip_all => 'no Text::Xslate') : ('no_plan');
-}
-    
 {
     package Mock::Pages;
     use Sledge::Pages::Compat;

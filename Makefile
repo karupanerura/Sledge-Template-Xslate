@@ -13,9 +13,9 @@
 
 #     ABSTRACT_FROM => q[lib/Sledge/Template/Xslate.pm]
 #     AUTHOR => q[Kenta Sato <kenta.sato.1990@gmail.com>]
-#     BUILD_REQUIRES => {  }
+#     BUILD_REQUIRES => { Test::Requires=>q[0], Test::More=>q[0], Sledge=>q[0], Sledge::TestPages=>q[0] }
 #     NAME => q[Sledge::Template::Xslate]
-#     PREREQ_PM => { parent=>q[0], Sledge=>q[0], version=>q[0], Text::Xslate=>q[0], Test::More=>q[0], Sledge::TestPages=>q[0], File::Spec::Memoized=>q[0], File::Basename=>q[0] }
+#     PREREQ_PM => { Test::Requires=>q[0], Sledge=>q[0], parent=>q[0], version=>q[0], Memoize=>q[0], Text::Xslate=>q[0], Test::More=>q[0], Sledge::TestPages=>q[0], File::Spec::Memoized=>q[0], File::Basename=>q[0] }
 #     VERSION_FROM => q[lib/Sledge/Template/Xslate.pm]
 
 # --- MakeMaker post_initialize section:
@@ -55,11 +55,11 @@ DIRFILESEP = /
 DFSEP = $(DIRFILESEP)
 NAME = Sledge::Template::Xslate
 NAME_SYM = Sledge_Template_Xslate
-VERSION = 0.0.3
+VERSION = 0.0.4
 VERSION_MACRO = VERSION
-VERSION_SYM = 0_0_3
+VERSION_SYM = 0_0_4
 DEFINE_VERSION = -D$(VERSION_MACRO)=\"$(VERSION)\"
-XS_VERSION = 0.0.3
+XS_VERSION = 0.0.4
 XS_VERSION_MACRO = XS_VERSION
 XS_DEFINE_VERSION = -D$(XS_VERSION_MACRO)=\"$(XS_VERSION)\"
 INST_ARCHLIB = blib/arch
@@ -253,7 +253,7 @@ RCS_LABEL = rcs -Nv$(VERSION_SYM): -q
 DIST_CP = best
 DIST_DEFAULT = tardist
 DISTNAME = Sledge-Template-Xslate
-DISTVNAME = Sledge-Template-Xslate-0.0.3
+DISTVNAME = Sledge-Template-Xslate-0.0.4
 
 
 # --- MakeMaker macro section:
@@ -474,7 +474,7 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) Generating META.yml
 	$(NOECHO) $(ECHO) '--- #YAML:1.0' > META_new.yml
 	$(NOECHO) $(ECHO) 'name:               Sledge-Template-Xslate' >> META_new.yml
-	$(NOECHO) $(ECHO) 'version:            0.0.3' >> META_new.yml
+	$(NOECHO) $(ECHO) 'version:            0.0.4' >> META_new.yml
 	$(NOECHO) $(ECHO) 'abstract:           Text::Xslate template system for Sledge' >> META_new.yml
 	$(NOECHO) $(ECHO) 'author:' >> META_new.yml
 	$(NOECHO) $(ECHO) '    - Kenta Sato <kenta.sato.1990@gmail.com>' >> META_new.yml
@@ -483,14 +483,15 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) 'configure_requires:' >> META_new.yml
 	$(NOECHO) $(ECHO) '    ExtUtils::MakeMaker:  0' >> META_new.yml
 	$(NOECHO) $(ECHO) 'build_requires:' >> META_new.yml
-	$(NOECHO) $(ECHO) '    ExtUtils::MakeMaker:  0' >> META_new.yml
+	$(NOECHO) $(ECHO) '    Sledge:             0' >> META_new.yml
+	$(NOECHO) $(ECHO) '    Sledge::TestPages:  0' >> META_new.yml
+	$(NOECHO) $(ECHO) '    Test::More:         0' >> META_new.yml
+	$(NOECHO) $(ECHO) '    Test::Requires:     0' >> META_new.yml
 	$(NOECHO) $(ECHO) 'requires:' >> META_new.yml
 	$(NOECHO) $(ECHO) '    File::Basename:       0' >> META_new.yml
 	$(NOECHO) $(ECHO) '    File::Spec::Memoized:  0' >> META_new.yml
+	$(NOECHO) $(ECHO) '    Memoize:              0' >> META_new.yml
 	$(NOECHO) $(ECHO) '    parent:               0' >> META_new.yml
-	$(NOECHO) $(ECHO) '    Sledge:               0' >> META_new.yml
-	$(NOECHO) $(ECHO) '    Sledge::TestPages:    0' >> META_new.yml
-	$(NOECHO) $(ECHO) '    Test::More:           0' >> META_new.yml
 	$(NOECHO) $(ECHO) '    Text::Xslate:         0' >> META_new.yml
 	$(NOECHO) $(ECHO) '    version:              0' >> META_new.yml
 	$(NOECHO) $(ECHO) 'no_index:' >> META_new.yml
@@ -791,15 +792,13 @@ testdb_static :: testdb_dynamic
 # --- MakeMaker ppd section:
 # Creates a PPD (Perl Package Description) for a binary distribution.
 ppd :
-	$(NOECHO) $(ECHO) '<SOFTPKG NAME="$(DISTNAME)" VERSION="0.0.3">' > $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '<SOFTPKG NAME="$(DISTNAME)" VERSION="0.0.4">' > $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '    <ABSTRACT>Text::Xslate template system for Sledge</ABSTRACT>' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '    <AUTHOR>Kenta Sato &lt;kenta.sato.1990@gmail.com&gt;</AUTHOR>' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '    <IMPLEMENTATION>' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="File::Basename" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="File::Spec::Memoized" />' >> $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Sledge::" />' >> $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Sledge::TestPages" />' >> $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Test::More" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Memoize::" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Text::Xslate" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="parent::" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="version::" />' >> $(DISTNAME).ppd

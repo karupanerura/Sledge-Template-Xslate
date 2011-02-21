@@ -1,5 +1,6 @@
 ﻿use strict;
 use Test::More;
+use Test::Requires qw(Sledge Text::Xslate);
 
 BEGIN {
     eval { require Text::Xslate; };
@@ -7,7 +8,7 @@ BEGIN {
 }
 
 {
-    package Mock::Pages;;
+    package Mock::Pages;
     use Sledge::Pages::Compat;
     use Sledge::Template::Xslate ({
       syntax => 'TTerse',

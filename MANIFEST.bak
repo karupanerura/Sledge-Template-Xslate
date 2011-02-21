@@ -10,6 +10,9 @@ t/03.xslate_hook.t
 t/04.xslate_include.t
 t/05.xslate_ref.t
 t/06_memoized.t
+t/cache/xslate/%2F/root/Sledge-Template-Xslate/E/Sledge-Template-Xslate/t/template/foo.htmlc
+t/cache/xslate/%2F/root/Sledge-Template-Xslate/t/template/foo.htmlc
+t/cache/xslate/%2F/usr/home/karupas/p5/Sledge-Template-Xslate/t/template/foo.htmlc
 t/pod.t
 t/template/foo.html
 t/template/include1.html
