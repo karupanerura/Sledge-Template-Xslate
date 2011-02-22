@@ -1,11 +1,8 @@
-Sledge-Template-Xslate version 0.0.3
-===================================
-
 NAME
     Sledge::Template::Xslate - Text::Xslate template system for Sledge
 
 VERSION
-    This document describes Sledge::Template::Xslate version 0.0.3
+    This document describes Sledge::Template::Xslate version 0.0.4
 
 SYNOPSIS
         package MyApp::Pages;
@@ -23,25 +20,14 @@ SYNOPSIS
 DESCRIPTION
     Sledge::Template::Xslate is Text::Xslate template system for Sledge.
 
+AUTHOR
+    Kenta Sato "<kenta.sato.1990@gmail.com>"
+
 SEE ALSO
-    Sledge::Template Text::Xslate Text::Xslate::Syntax::Kolon
+    Sledge( Repository - http://sourceforge.jp/projects/sledge/ )
+    Sledge::Template Text::Xslate
 
-INSTALLATION
+LICENSE
+    This library is free software; you can redistribute it and/or modify it
+    under the same terms as Perl itself.
 
-To install this module type the following:
-
-   perl Makefile.PL
-   make
-   make test
-   make install
-
-DEPENDENCIES
-
-None.
-
-COPYRIGHT AND LICENCE
-
-Copyright (C) 2010, Kenta Sato
-
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself.

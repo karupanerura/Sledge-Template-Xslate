@@ -11,12 +11,19 @@
 
 #   MakeMaker Parameters:
 
-#     ABSTRACT_FROM => q[lib/Sledge/Template/Xslate.pm]
-#     AUTHOR => q[Kenta Sato <kenta.sato.1990@gmail.com>]
-#     BUILD_REQUIRES => { Test::Requires=>q[0], Test::More=>q[0], Sledge=>q[0], Sledge::TestPages=>q[0] }
+#     ABSTRACT => q[Text::Xslate template system for Sledge]
+#     AUTHOR => q[Kenta Sato  C<< <kenta.sato.1990@gmail.com> >>]
+#     BUILD_REQUIRES => { ExtUtils::MakeMaker=>q[6.42] }
+#     DISTNAME => q[Sledge-Template-Xslate]
+#     LICENSE => q[perl]
 #     NAME => q[Sledge::Template::Xslate]
-#     PREREQ_PM => { Test::Requires=>q[0], Sledge=>q[0], parent=>q[0], version=>q[0], Memoize=>q[0], Text::Xslate=>q[0], Test::More=>q[0], Sledge::TestPages=>q[0], File::Spec::Memoized=>q[0], File::Basename=>q[0] }
+#     NO_META => q[1]
+#     PREREQ_PM => { parent=>q[0], Sledge=>q[0], ExtUtils::MakeMaker=>q[6.42], version=>q[0], Memoize=>q[0], Text::Xslate=>q[0], File::Spec::Memoized=>q[0], File::Basename=>q[0] }
+#     VERSION => 0.0.4
 #     VERSION_FROM => q[lib/Sledge/Template/Xslate.pm]
+#     dist => { PREOP=>q[$(PERL) -I. "-MModule::Install::Admin" -e "dist_preop(q($(DISTVNAME)))"] }
+#     realclean => { FILES=>q[MYMETA.yml] }
+#     test => { TESTS=>q[t/*.t xt/*.t] }
 
 # --- MakeMaker post_initialize section:
 
@@ -112,7 +119,7 @@ INSTALLSITEMAN3DIR = /usr/local/lib/perl5/5.12.2/man/man3
 DESTINSTALLSITEMAN3DIR = $(DESTDIR)$(INSTALLSITEMAN3DIR)
 INSTALLVENDORMAN3DIR = 
 DESTINSTALLVENDORMAN3DIR = $(DESTDIR)$(INSTALLVENDORMAN3DIR)
-PERL_LIB = /usr/local/lib/perl5/5.12.2
+PERL_LIB =
 PERL_ARCHLIB = /usr/local/lib/perl5/5.12.2/mach
 LIBPERL_A = libperl.a
 FIRST_MAKEFILE = Makefile
@@ -120,15 +127,15 @@ MAKEFILE_OLD = Makefile.old
 MAKE_APERL_FILE = Makefile.aperl
 PERLMAINCC = $(CC)
 PERL_INC = /usr/local/lib/perl5/5.12.2/mach/CORE
-PERL = /usr/bin/perl
-FULLPERL = /usr/bin/perl
+PERL = /usr/bin/perl "-Iinc"
+FULLPERL = /usr/bin/perl "-Iinc"
 ABSPERL = $(PERL)
 PERLRUN = $(PERL)
 FULLPERLRUN = $(FULLPERL)
 ABSPERLRUN = $(ABSPERL)
-PERLRUNINST = $(PERLRUN) "-I$(INST_ARCHLIB)" "-I$(INST_LIB)"
-FULLPERLRUNINST = $(FULLPERLRUN) "-I$(INST_ARCHLIB)" "-I$(INST_LIB)"
-ABSPERLRUNINST = $(ABSPERLRUN) "-I$(INST_ARCHLIB)" "-I$(INST_LIB)"
+PERLRUNINST = $(PERLRUN) "-I$(INST_ARCHLIB)" "-Iinc" "-I$(INST_LIB)"
+FULLPERLRUNINST = $(FULLPERLRUN) "-I$(INST_ARCHLIB)" "-Iinc" "-I$(INST_LIB)"
+ABSPERLRUNINST = $(ABSPERLRUN) "-I$(INST_ARCHLIB)" "-Iinc" "-I$(INST_LIB)"
 PERL_CORE = 0
 PERM_DIR = 755
 PERM_RW = 644
@@ -159,7 +166,8 @@ C_FILES  =
 O_FILES  = 
 H_FILES  = 
 MAN1PODS = 
-MAN3PODS = lib/Sledge/Template/Xslate.pm
+MAN3PODS = README.pod \
+	lib/Sledge/Template/Xslate.pm
 
 # Where is the Config information that we are using/depend on
 CONFIGDEP = $(PERL_ARCHLIB)$(DFSEP)Config.pm $(PERL_INC)$(DFSEP)config.h
@@ -181,9 +189,12 @@ PERL_ARCHIVE       =
 PERL_ARCHIVE_AFTER = 
 
 
-TO_INST_PM = lib/Sledge/Template/Xslate.pm
+TO_INST_PM = README.pod \
+	lib/Sledge/Template/Xslate.pm
 
-PM_TO_BLIB = lib/Sledge/Template/Xslate.pm \
+PM_TO_BLIB = README.pod \
+	$(INST_LIB)/Sledge/Template/README.pod \
+	lib/Sledge/Template/Xslate.pm \
 	blib/lib/Sledge/Template/Xslate.pm
 
 
@@ -245,7 +256,7 @@ ZIPFLAGS = -r
 COMPRESS = gzip --best
 SUFFIX = .gz
 SHAR = shar
-PREOP = $(NOECHO) $(NOOP)
+PREOP = $(PERL) -I. "-MModule::Install::Admin" -e "dist_preop(q($(DISTVNAME)))"
 POSTOP = $(NOECHO) $(NOOP)
 TO_UNIX = $(NOECHO) $(NOOP)
 CI = ci -u
@@ -406,8 +417,10 @@ POD2MAN = $(POD2MAN_EXE)
 
 
 manifypods : pure_all  \
+	README.pod \
 	lib/Sledge/Template/Xslate.pm
 	$(NOECHO) $(POD2MAN) --section=3 --perm_rw=$(PERM_RW) \
+	  README.pod $(INST_MAN3DIR)/Sledge::Template::README.$(MAN3EXT) \
 	  lib/Sledge/Template/Xslate.pm $(INST_MAN3DIR)/Sledge::Template::Xslate.$(MAN3EXT) 
 
 
@@ -466,43 +479,12 @@ realclean purge ::  clean realclean_subdirs
 	- $(RM_F) \
 	  $(MAKEFILE_OLD) $(FIRST_MAKEFILE) 
 	- $(RM_RF) \
-	  $(DISTVNAME) 
+	  MYMETA.yml $(DISTVNAME) 
 
 
 # --- MakeMaker metafile section:
-metafile : create_distdir
-	$(NOECHO) $(ECHO) Generating META.yml
-	$(NOECHO) $(ECHO) '--- #YAML:1.0' > META_new.yml
-	$(NOECHO) $(ECHO) 'name:               Sledge-Template-Xslate' >> META_new.yml
-	$(NOECHO) $(ECHO) 'version:            0.0.4' >> META_new.yml
-	$(NOECHO) $(ECHO) 'abstract:           Text::Xslate template system for Sledge' >> META_new.yml
-	$(NOECHO) $(ECHO) 'author:' >> META_new.yml
-	$(NOECHO) $(ECHO) '    - Kenta Sato <kenta.sato.1990@gmail.com>' >> META_new.yml
-	$(NOECHO) $(ECHO) 'license:            unknown' >> META_new.yml
-	$(NOECHO) $(ECHO) 'distribution_type:  module' >> META_new.yml
-	$(NOECHO) $(ECHO) 'configure_requires:' >> META_new.yml
-	$(NOECHO) $(ECHO) '    ExtUtils::MakeMaker:  0' >> META_new.yml
-	$(NOECHO) $(ECHO) 'build_requires:' >> META_new.yml
-	$(NOECHO) $(ECHO) '    Sledge:             0' >> META_new.yml
-	$(NOECHO) $(ECHO) '    Sledge::TestPages:  0' >> META_new.yml
-	$(NOECHO) $(ECHO) '    Test::More:         0' >> META_new.yml
-	$(NOECHO) $(ECHO) '    Test::Requires:     0' >> META_new.yml
-	$(NOECHO) $(ECHO) 'requires:' >> META_new.yml
-	$(NOECHO) $(ECHO) '    File::Basename:       0' >> META_new.yml
-	$(NOECHO) $(ECHO) '    File::Spec::Memoized:  0' >> META_new.yml
-	$(NOECHO) $(ECHO) '    Memoize:              0' >> META_new.yml
-	$(NOECHO) $(ECHO) '    parent:               0' >> META_new.yml
-	$(NOECHO) $(ECHO) '    Text::Xslate:         0' >> META_new.yml
-	$(NOECHO) $(ECHO) '    version:              0' >> META_new.yml
-	$(NOECHO) $(ECHO) 'no_index:' >> META_new.yml
-	$(NOECHO) $(ECHO) '    directory:' >> META_new.yml
-	$(NOECHO) $(ECHO) '        - t' >> META_new.yml
-	$(NOECHO) $(ECHO) '        - inc' >> META_new.yml
-	$(NOECHO) $(ECHO) 'generated_by:       ExtUtils::MakeMaker version 6.56' >> META_new.yml
-	$(NOECHO) $(ECHO) 'meta-spec:' >> META_new.yml
-	$(NOECHO) $(ECHO) '    url:      http://module-build.sourceforge.net/META-spec-v1.4.html' >> META_new.yml
-	$(NOECHO) $(ECHO) '    version:  1.4' >> META_new.yml
-	-$(NOECHO) $(MV) META_new.yml $(DISTVNAME)/META.yml
+metafile :
+	$(NOECHO) $(NOOP)
 
 
 # --- MakeMaker signature section:
@@ -570,7 +552,7 @@ create_distdir :
 	$(PERLRUN) "-MExtUtils::Manifest=manicopy,maniread" \
 		-e "manicopy(maniread(),'$(DISTVNAME)', '$(DIST_CP)');"
 
-distdir : create_distdir distmeta 
+distdir : create_distdir  
 	$(NOECHO) $(NOOP)
 
 
@@ -766,7 +748,7 @@ $(MAKE_APERL_FILE) : $(FIRST_MAKEFILE) pm_to_blib
 TEST_VERBOSE=0
 TEST_TYPE=test_$(LINKTYPE)
 TEST_FILE = test.pl
-TEST_FILES = t/*.t
+TEST_FILES = t/*.t xt/*.t
 TESTDB_SW = -d
 
 testdb :: testdb_$(LINKTYPE)
@@ -778,10 +760,10 @@ subdirs-test ::
 
 
 test_dynamic :: pure_all
-	PERL_DL_NONLAZY=1 $(FULLPERLRUN) "-MExtUtils::Command::MM" "-e" "test_harness($(TEST_VERBOSE), '$(INST_LIB)', '$(INST_ARCHLIB)')" $(TEST_FILES)
+	PERL_DL_NONLAZY=1 $(FULLPERLRUN) "-MExtUtils::Command::MM" "-e" "test_harness($(TEST_VERBOSE), 'inc', '$(INST_LIB)', '$(INST_ARCHLIB)')" $(TEST_FILES)
 
 testdb_dynamic :: pure_all
-	PERL_DL_NONLAZY=1 $(FULLPERLRUN) $(TESTDB_SW) "-I$(INST_LIB)" "-I$(INST_ARCHLIB)" $(TEST_FILE)
+	PERL_DL_NONLAZY=1 $(FULLPERLRUN) $(TESTDB_SW) "-Iinc" "-I$(INST_LIB)" "-I$(INST_ARCHLIB)" $(TEST_FILE)
 
 test_ : test_dynamic
 
@@ -794,11 +776,12 @@ testdb_static :: testdb_dynamic
 ppd :
 	$(NOECHO) $(ECHO) '<SOFTPKG NAME="$(DISTNAME)" VERSION="0.0.4">' > $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '    <ABSTRACT>Text::Xslate template system for Sledge</ABSTRACT>' >> $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '    <AUTHOR>Kenta Sato &lt;kenta.sato.1990@gmail.com&gt;</AUTHOR>' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '    <AUTHOR>Kenta Sato  C&lt;&lt; &lt;kenta.sato.1990@gmail.com&gt; &gt;&gt;</AUTHOR>' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '    <IMPLEMENTATION>' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="File::Basename" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="File::Spec::Memoized" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Memoize::" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Sledge::" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Text::Xslate" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="parent::" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="version::" />' >> $(DISTNAME).ppd
@@ -812,6 +795,7 @@ ppd :
 
 pm_to_blib : $(FIRST_MAKEFILE) $(TO_INST_PM)
 	$(NOECHO) $(ABSPERLRUN) -MExtUtils::Install -e 'pm_to_blib({@ARGV}, '\''$(INST_LIB)/auto'\'', q[$(PM_FILTER)], '\''$(PERM_DIR)'\'')' -- \
+	  README.pod $(INST_LIB)/Sledge/Template/README.pod \
 	  lib/Sledge/Template/Xslate.pm blib/lib/Sledge/Template/Xslate.pm 
 	$(NOECHO) $(TOUCH) pm_to_blib
 
@@ -823,3 +807,23 @@ pm_to_blib : $(FIRST_MAKEFILE) $(TO_INST_PM)
 
 
 # End.
+# Postamble by Module::Install 1.00
+# --- Module::Install::Admin::Makefile section:
+
+realclean purge ::
+	$(RM_F) $(DISTVNAME).tar$(SUFFIX)
+	$(RM_F) MANIFEST.bak _build
+	$(PERL) "-Ilib" "-MModule::Install::Admin" -e "remove_meta()"
+	$(RM_RF) inc
+
+reset :: purge
+
+upload :: test dist
+	cpan-upload -verbose $(DISTVNAME).tar$(SUFFIX)
+
+grok ::
+	perldoc Module::Install
+
+distsign ::
+	cpansign -s
+

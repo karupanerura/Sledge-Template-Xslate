@@ -1,6 +1,13 @@
-Revision history for Perl extension Sledge::Template::Xslate.
+Revision history for Perl extension Sledge::Template::Xslate
 
-0.0.1  Mon Nov 22 16:09:04 2010
-	- original version; created by h2xs 1.23 with options
-		-AX -n Sledge::Template::Xslate
+0.0.1
+        - miss take version
 
+0.0.2
+        - original version
+
+0.0.3
+        - change interface of Text::Xslate constructor options.(idea by tokuhirom)
+
+0.0.4
+        - memoize Text::Xslate constructor.(gfx++)
