@@ -11,3 +11,7 @@ Revision history for Perl extension Sledge::Template::Xslate
 
 0.0.4
         - memoize Text::Xslate constructor.(gfx++)
+
+0.05
+        - change version format.
+        - fixed dependencies.
