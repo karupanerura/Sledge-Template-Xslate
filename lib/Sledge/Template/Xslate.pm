@@ -2,9 +2,8 @@ package Sledge::Template::Xslate;
 
 use strict;
 use warnings;
-use version;
 
-our $VERSION = qv('0.05');
+our $VERSION = '0.05';
 our $XSLATE_CACHE_DIR_NAME = 'xslate';
 
 use parent qw(Sledge::Template);

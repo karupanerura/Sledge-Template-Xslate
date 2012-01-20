@@ -10,7 +10,6 @@ githubmeta;
 tests 't/*.t';
 author_tests 'xt';
 
-requires 'version';
 requires 'parent';
 requires 'Text::Xslate';
 requires 'File::Spec::Memoized';
