@@ -21,15 +21,26 @@ lib/Sledge/Template/Xslate.pm
 Makefile.PL
 MANIFEST			This list of files
 META.yml
+MYMETA.json
+MYMETA.yml
 README
 README.pod
+t/00.load.t
 t/00_compile.t
+t/01.xslate.t
 t/01_xslate.t
+t/02.xslate_import.t
 t/02_xslate_import.t
+t/03.xslate_hook.t
 t/03_xslate_hook.t
+t/04.xslate_include.t
 t/04_xslate_include.t
+t/05.xslate_ref.t
 t/05_xslate_ref.t
 t/06_memoized.t
+t/cache/xslate/%2F/root/Sledge-Template-Xslate/E/Sledge-Template-Xslate/t/template/foo.htmlc
+t/cache/xslate/%2F/root/Sledge-Template-Xslate/t/template/foo.htmlc
+t/cache/xslate/%2F/usr/home/karupas/p5/Sledge-Template-Xslate/t/template/foo.htmlc
 t/pod.t
 t/template/foo.html
 t/template/include1.html
