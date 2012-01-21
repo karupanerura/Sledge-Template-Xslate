@@ -13,7 +13,6 @@ author_tests 'xt';
 requires 'parent';
 requires 'Text::Xslate';
 requires 'File::Spec::Memoized';
-requires 'File::Basename';
 requires 'Memoize';
 requires 'Sledge::Template';
 requires 'Sledge::Exceptions';
