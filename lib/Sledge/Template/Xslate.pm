@@ -10,7 +10,6 @@ use parent qw(Sledge::Template);
 
 use Text::Xslate;
 use File::Spec::Memoized;
-use File::Basename;
 use Sledge::Exceptions;
 use Memoize;
 
@@ -25,8 +24,8 @@ sub import {
 
     no strict 'refs';
     *{"$pkg\::create_template"} = sub {
-	my($self, $file) = @_;
-	return $class->new($file, $self, $option);
+        my($self, $file) = @_;
+        return $class->new($file, $self, $option);
     };
 }
 
@@ -36,23 +35,23 @@ sub new {
     my $config = $page->create_config();
 
     my $_option = {
-	filename    => $file,
-	path        => ['/', dirname($file)],
-	input_layer => ':encoding(euc-jp)',# Default encoding is euc-jp (not utf-8)
-	suffix      => '.html',
-	type        => 'html',
-	cache       => 1
+        filename    => $file,
+        path        => ['/', '.'],
+        input_layer => ':encoding(euc-jp)',# Sledge's default encoding is euc-jp (not utf-8)
+        suffix      => '.html',
+        type        => 'html',
+        cache       => 1
     };
 
     if(defined($option)){
-	foreach my $key (keys(%$option)){
-	    $_option->{$key} = $option->{$key};
-	}
+        foreach my $key (keys(%$option)){
+            $_option->{$key} = $option->{$key};
+        }
     }
 
     my $self = {
         _options => $_option,
-	_params  => {
+        _params  => {
             config  => $config,
             r       => $page->r,
             session => $page->session,
@@ -69,24 +68,24 @@ sub output {
     my $self = shift;
     my $config = $self->{_options};
     my $input  = delete $config->{filename};
-    my $cache_dir = $self->{'_params'}->{'config'}->can('cache_dir') ? 
-	$self->{'_params'}->{'config'}->cache_dir : undef;
+    my $cache_dir = $self->{'_params'}->{'config'}->can('cache_dir') ?
+        $self->{'_params'}->{'config'}->cache_dir : undef;
 
     # Cache directory check
     if(defined($cache_dir)){
-	$config->{cache_dir} = File::Spec->catfile($cache_dir, $XSLATE_CACHE_DIR_NAME);
-	Sledge::Exception::TemplateCacheDirNotFound->throw(
-	    "No template cache directory detected: $cache_dir"
-	) unless(-d $config->{cache_dir});
-    }else{
-	$config->{cache} = 0;
+        $config->{cache_dir} = File::Spec->catfile($cache_dir, $XSLATE_CACHE_DIR_NAME);
+        Sledge::Exception::TemplateCacheDirNotFound->throw(
+            "No template cache directory detected: $cache_dir"
+            ) unless(-d $config->{cache_dir});
+    } else {
+        $config->{cache} = 0;
     }
 
     # Template file check
     unless (ref($input) || -e $input) {
-	Sledge::Exception::TemplateNotFound->throw(
-	    "No template file detected: $input",
-	);
+        Sledge::Exception::TemplateNotFound->throw(
+            "No template file detected: $input",
+        );
     }
 
     # Create object
@@ -94,9 +93,9 @@ sub output {
 
     # Render
     return ((ref $input eq 'SCALAR') ?
-	    $template->render_string($$input, $self->{_params}):
-	    $template->render($input, $self->{_params})
-	)or Sledge::Exception::TemplateParseError->throw($template->error);
+            $template->render_string($$input, $self->{_params}):
+            $template->render($input, $self->{_params})
+	) or Sledge::Exception::TemplateParseError->throw($template->error);
 }
 
 1;
