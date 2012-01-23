@@ -34,6 +34,7 @@ t/04_xslate_include.t
 t/05.xslate_ref.t
 t/05_xslate_ref.t
 t/06_memoized.t
+t/cache/xslate/.gitignore
 t/pod.t
 t/template/foo.html
 t/template/include1.html
