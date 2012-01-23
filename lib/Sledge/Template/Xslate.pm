@@ -10,7 +10,6 @@ use parent qw(Sledge::Template);
 
 use Text::Xslate;
 use File::Spec::Memoized;
-use Sledge::Exceptions;
 use Memoize;
 
 memoize('create_xslate');
@@ -97,6 +96,10 @@ sub output {
             $template->render($input, $self->{_params})
 	) or Sledge::Exception::TemplateParseError->throw($template->error);
 }
+
+package Sledge::Exception::TemplateCacheDirNotFound;
+use parent 'Sledge::Exception';
+sub description { 'No template cache directory detected.' }
 
 1;
 __END__
