@@ -19,3 +19,9 @@ Revision history for Perl extension Sledge::Template::Xslate
 0.06
         - fixed xslate option.
         - fixed dependencies.
+
+0.07
+        - fixed xslate option.
+        - fixed package.
+        - fixed defined Exception.
+
