@@ -9,6 +9,7 @@ our $XSLATE_CACHE_DIR_NAME = 'xslate';
 use parent qw(Sledge::Template);
 
 use Text::Xslate;
+use File::Basename;
 use File::Spec::Memoized;
 use Memoize;
 
@@ -35,7 +36,7 @@ sub new {
 
     my $_option = {
         filename    => $file,
-        path        => ['/', '.'],
+        path        => [dirname($file), '.', '/'],
         input_layer => ':encoding(euc-jp)',# Sledge's default encoding is euc-jp (not utf-8)
         suffix      => '.html',
         type        => 'html',
