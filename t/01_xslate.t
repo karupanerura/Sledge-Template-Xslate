@@ -1,6 +1,5 @@
 ﻿use strict;
 use Test::More tests => 5;
-use Test::Requires qw(Sledge Text::Xslate);
 
 {
     package Mock::Pages;

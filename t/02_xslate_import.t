@@ -1,6 +1,5 @@
 ﻿use strict;
 use Test::More;
-use Test::Requires qw(Sledge Text::Xslate);
 
 BEGIN {
     eval { require Text::Xslate; };

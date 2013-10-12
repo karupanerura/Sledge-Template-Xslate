@@ -1,6 +1,5 @@
 ﻿use strict;
 use Test::More tests => 2;
-use Test::Requires qw(Text::Xslate);
 use Sledge::Template::Xslate;
 
 my $option = {

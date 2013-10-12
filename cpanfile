@@ -17,9 +17,9 @@ on test => sub {
     requires 'Sledge::Pages::Compat';
     requires 'Sledge::TestPages';
     requires 'Test::More';
-    requires 'Test::Requires';
 };
 
 on develop => sub {
+    requires 'git@github.com:livedoor/Sledge.git';
     requires 'Test::Perl::Critic';
 };
