@@ -12,3 +12,10 @@ MANIFEST.bak
 MYMETA.json
 MYMETA.yml
 t/cache/xslate
+/Sledge-Template-Xslate-*
+/.build
+/_build_params
+/Build
+!Build/
+!META.json
+!LICENSE

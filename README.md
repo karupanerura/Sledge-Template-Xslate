@@ -1,12 +1,12 @@
-=head1 NAME
+# NAME
 
 Sledge::Template::Xslate - Text::Xslate template system for Sledge
 
-=head1 VERSION
+# VERSION
 
 This document describes Sledge::Template::Xslate version 0.0.4
 
-=head1 SYNOPSIS
+# SYNOPSIS
 
     package MyApp::Pages;
     use strict;
@@ -20,25 +20,21 @@ This document describes Sledge::Template::Xslate version 0.0.4
 
     # ...
 
-=head1 DESCRIPTION
+# DESCRIPTION
 
 Sledge::Template::Xslate is Text::Xslate template system for Sledge.
 
-=head1 AUTHOR
+# AUTHOR
 
-Kenta Sato  C<< <kenta.sato.1990@gmail.com> >>
+Kenta Sato  `<kenta.sato.1990@gmail.com>`
 
-=head1 SEE ALSO
+# SEE ALSO
 
 Sledge( Repository - http://sourceforge.jp/projects/sledge/ )
 Sledge::Template
-L<Text::Xslate>
+[Text::Xslate](http://search.cpan.org/perldoc?Text::Xslate)
 
-=head1 LICENSE
+# LICENSE
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
-
-
-=cut
-
