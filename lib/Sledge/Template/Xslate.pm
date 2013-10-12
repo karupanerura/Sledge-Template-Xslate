@@ -3,7 +3,7 @@ package Sledge::Template::Xslate;
 use strict;
 use warnings;
 
-our $VERSION = '0.07';
+our $VERSION = '0.08';
 our $XSLATE_CACHE_DIR_NAME = 'xslate';
 
 use parent qw(Sledge::Template);
@@ -97,7 +97,7 @@ Sledge::Template::Xslate - Text::Xslate template system for Sledge
 
 =head1 VERSION
 
-This document describes Sledge::Template::Xslate version 0.0.4
+This document describes Sledge::Template::Xslate version 0.08
 
 =head1 SYNOPSIS
 
