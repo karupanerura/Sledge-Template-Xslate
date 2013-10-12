@@ -1,7 +1,6 @@
 requires 'File::Spec::Memoized';
 requires 'Memoize';
-requires 'Sledge::Exception';
-requires 'Sledge::Template';
+requires 'Sledge';
 requires 'Text::Xslate';
 requires 'parent';
 
@@ -14,12 +13,10 @@ on configure => sub {
 
 on test => sub {
     requires 'Class::Accessor';
-    requires 'Sledge::Pages::Compat';
-    requires 'Sledge::TestPages';
+    requires 'Sledge';
     requires 'Test::More';
 };
 
 on develop => sub {
-    requires 'git@github.com:livedoor/Sledge.git';
     requires 'Test::Perl::Critic';
 };
