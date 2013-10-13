@@ -4,7 +4,7 @@ Sledge::Template::Xslate - Text::Xslate template system for Sledge
 
 # VERSION
 
-This document describes Sledge::Template::Xslate version 0.08
+This document describes Sledge::Template::Xslate version 0.09
 
 # SYNOPSIS
 

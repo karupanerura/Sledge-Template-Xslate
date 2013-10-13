@@ -4,7 +4,7 @@
       "Kenta Sato  C<< <kenta.sato.1990@gmail.com> >>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/v0.7.4, CPAN::Meta::Converter version 2.132661",
+   "generated_by" : "Minilla/v0.7.5, CPAN::Meta::Converter version 2.132661",
    "license" : [
       "perl_5"
    ],
@@ -72,10 +72,11 @@
          "web" : "https://github.com/karupanerura/Sledge-Template-Xslate"
       }
    },
-   "version" : "0.08",
+   "version" : "0.09",
    "x_contributors" : [
       "Kenta Sato <f0913@www.schoolsocial.org>",
       "karupanerura <kenta.sato.1990@gmail.com>",
+      "Neil Bowers <neil@bowers.com>",
       "karupanerura <karupa@cpan.org>"
    ]
 }

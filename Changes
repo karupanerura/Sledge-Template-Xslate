@@ -2,6 +2,9 @@ Revision history for Perl module Sledge::Template::Xslate
 
 {{$NEXT}}
 
+0.09 2013-10-13T12:47:47Z
+        - Added missing dates to Changes to satisfy CPAN::Changes::Spec. (neilbowers)
+
 0.08 2013-10-12T02:17:13Z
         - minil migrate
         - no check exists xslate cache directory.
